@@ -552,172 +552,174 @@ export default function StockFortuneTeller() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex items-center justify-center">
-      <div className="container mx-auto px-4 max-w-lg">
-        {/* Header */}
-        <div className="text-center mb-6">
-          <div className="relative">
-            <h1 className="text-2xl sm:text-3xl font-bold text-white mb-3 flex items-center justify-center gap-2">
-              <Sparkles className="text-yellow-400 animate-pulse" size={24} />
-              📈 AI 주식 점쟁이
-              <Sparkles className="text-yellow-400 animate-pulse" size={24} />
-            </h1>
-            <div className="absolute -top-1 -right-1 animate-bounce">
-              <Star className="text-yellow-300" size={16} />
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
+      <div className="min-h-screen flex items-center justify-center p-4">
+        <div className="w-[32rem] max-w-full">
+          {/* Header */}
+          <div className="text-center mb-6">
+            <div className="relative">
+              <h1 className="text-2xl sm:text-3xl font-bold text-white mb-3 flex items-center justify-center gap-2">
+                <Sparkles className="text-yellow-400 animate-pulse" size={24} />
+                📈 AI 주식 점쟁이
+                <Sparkles className="text-yellow-400 animate-pulse" size={24} />
+              </h1>
+              <div className="absolute -top-1 -right-1 animate-bounce">
+                <Star className="text-yellow-300" size={16} />
+              </div>
+              <div className="absolute -top-2 -left-2 animate-bounce delay-500">
+                <Zap className="text-pink-300" size={14} />
+              </div>
             </div>
-            <div className="absolute -top-2 -left-2 animate-bounce delay-500">
-              <Zap className="text-pink-300" size={14} />
-            </div>
+            <p className="text-sm sm:text-base text-purple-200 mb-1">🔮 AI가 주식 미래를 예언합니다</p>
+            <p className="text-xs text-purple-300">※ 투자 참고용으로만 사용하세요 ※</p>
           </div>
-          <p className="text-sm sm:text-base text-purple-200 mb-1">🔮 AI가 주식 미래를 예언합니다</p>
-          <p className="text-xs text-purple-300">※ 투자 참고용으로만 사용하세요 ※</p>
-        </div>
 
-        {/* Input Form */}
-        <div className="bg-white/10 backdrop-blur-lg rounded-xl p-4 mb-4 border border-white/20">
-          <div className="space-y-3">
-            <div>
-              <label className="block text-white text-sm font-medium mb-2">
-                🎯 점쳐볼 주식을 입력하세요
-              </label>
-              <div className="relative">
-                <input
-                  type="text"
-                  value={stockSymbol}
-                  onChange={(e) => setStockSymbol(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && generatePrediction()}
-                  placeholder="예: 애플, 삼성전자, AAPL, 005930"
-                  className="w-full px-3 py-2.5 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent text-sm"
-                />
-              </div>
-            </div>
-            
-            <button
-              onClick={generatePrediction}
-              disabled={isLoading || !stockSymbol.trim()}
-              className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 disabled:from-gray-500 disabled:to-gray-600 text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-[1.02] disabled:scale-100 text-sm flex items-center justify-center gap-2"
-            >
-              {isLoading ? (
-                <>
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                  🔮 점괘를 보는 중...
-                </>
-              ) : (
-                <>
-                  <Target size={16} />
-                  ✨ 운명을 점쳐보기 ✨
-                </>
-              )}
-            </button>
-          </div>
-        </div>
-
-        {/* Advertisement Section - 처음 화면에서만 표시 */}
-        {!prediction && (
-          <div className="bg-gradient-to-br from-purple-800/20 via-blue-800/20 to-indigo-800/20 backdrop-blur-lg rounded-xl p-4 mb-4 border-2 border-purple-400/40 shadow-xl">
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-2 mb-3">
-                <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center border border-red-400">
-                  <span className="text-white text-xs font-bold">AD</span>
+          {/* Input Form */}
+          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-4 mb-4 border border-white/20">
+            <div className="space-y-3">
+              <div>
+                <label className="block text-white text-sm font-medium mb-2">
+                  🎯 점쳐볼 주식을 입력하세요
+                </label>
+                <div className="relative">
+                  <input
+                    type="text"
+                    value={stockSymbol}
+                    onChange={(e) => setStockSymbol(e.target.value)}
+                    onKeyPress={(e) => e.key === 'Enter' && generatePrediction()}
+                    placeholder="예: 애플, 삼성전자, AAPL, 005930"
+                    className="w-full px-3 py-2.5 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent text-sm"
+                  />
                 </div>
               </div>
-              <h3 className="text-lg font-bold text-yellow-200 mb-3">
-                🔮 광고 게재 문의
-              </h3>
-              <p className="text-purple-100 text-sm mb-4 leading-relaxed">
-                투자자들에게 브랜드를<br/>
-                효과적으로 알릴 기회입니다
-              </p>
-              <div className="bg-gradient-to-r from-yellow-600/20 to-orange-600/20 rounded-lg p-3 border border-yellow-500/40">
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <span className="text-yellow-200 text-sm font-medium">📧 광고 문의</span>
-                </div>
-                <div className="space-y-2">
-                  <p className="text-yellow-100 font-medium text-sm">
-                    sitemaker_@naver.com
-                  </p>
-                  <div className="bg-red-600/30 rounded-lg px-2 py-1 border border-red-500/40 inline-block">
-                    <p className="text-red-300 font-bold text-sm">
-                      월 3만원
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Prediction Result */}
-        {prediction && (
-          <div className="bg-gradient-to-br from-amber-900/20 via-yellow-900/20 to-orange-900/20 backdrop-blur-lg rounded-xl p-4 border-2 border-yellow-500/30 shadow-xl mb-4">
-            <div className="text-center">
-              <div className="text-3xl mb-3">{prediction.icon}</div>
-              <h2 className="text-sm font-bold text-yellow-200 mb-4 leading-relaxed">
-                <span className="text-yellow-300">{prediction.stockName}</span> 점괘 결과 🔮
-              </h2>
-
-              {/* 점괘 메시지 */}
-              <div className="bg-gradient-to-br from-amber-800/20 to-yellow-800/20 rounded-lg p-3 mb-3 border border-yellow-600/30">
-                <div className="text-yellow-100 text-xs sm:text-sm leading-relaxed whitespace-pre-line text-left">
-                  {prediction.message}
-                </div>
-              </div>
-
-              {/* 조언 */}
-              {prediction.advice && (
-                <div className="bg-gradient-to-r from-red-800/30 to-pink-800/30 rounded-lg p-3 mb-3 border border-red-500/30">
-                  <div className="text-red-200 text-xs sm:text-sm" dangerouslySetInnerHTML={{ __html: prediction.advice }}></div>
-                </div>
-              )}
-
-              <div className="flex justify-center items-center gap-2 flex-wrap">
-                {prediction.direction === 'up' && (
-                  <div className="flex items-center gap-1 bg-green-500/20 px-2 py-1 rounded-full border border-green-500/40">
-                    <TrendingUp className="text-green-400" size={14} />
-                    <span className="text-green-400 font-bold text-xs">상승 예상</span>
-                  </div>
+              
+              <button
+                onClick={generatePrediction}
+                disabled={isLoading || !stockSymbol.trim()}
+                className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 disabled:from-gray-500 disabled:to-gray-600 text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-[1.02] disabled:scale-100 text-sm flex items-center justify-center gap-2"
+              >
+                {isLoading ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                    🔮 점괘를 보는 중...
+                  </>
+                ) : (
+                  <>
+                    <Target size={16} />
+                    ✨ 운명을 점쳐보기 ✨
+                  </>
                 )}
-                {prediction.direction === 'down' && (
-                  <div className="flex items-center gap-1 bg-red-500/20 px-2 py-1 rounded-full border border-red-500/40">
-                    <TrendingDown className="text-red-400" size={14} />
-                    <span className="text-red-400 font-bold text-xs">하락 예상</span>
-                  </div>
-                )}
-                <div className="bg-yellow-600/20 px-2 py-1 rounded-full border border-yellow-500/40">
-                  <span className="text-yellow-200 text-xs">신뢰도: {prediction.confidence}</span>
-                </div>
-              </div>
+              </button>
             </div>
           </div>
-        )}
 
-        {/* Donation Section - 점괘 결과가 나온 후에만 표시 */}
-        {prediction && (
-          <div className="bg-gradient-to-br from-pink-800/20 via-purple-800/20 to-blue-800/20 backdrop-blur-lg rounded-xl p-4 mb-4 border-2 border-pink-400/40 shadow-xl">
-            <div className="text-center">
-              <div className="text-2xl mb-2">❤️</div>
-              <h3 className="text-lg font-bold text-pink-200 mb-2">
-                후원해주세요!
-              </h3>
-              <p className="text-purple-100 text-xs mb-3 leading-relaxed">
-                나도 주식 한 번 사보고 싶다...
-              </p>
-              <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-lg p-3 border border-blue-500/40">
-                <div className="flex items-center justify-center gap-1 mb-2">
-                  <span className="text-blue-200 text-xs font-medium">📱 후원 계좌</span>
+          {/* Advertisement Section - 처음 화면에서만 표시 */}
+          {!prediction && (
+            <div className="bg-gradient-to-br from-purple-800/20 via-blue-800/20 to-indigo-800/20 backdrop-blur-lg rounded-xl p-4 mb-4 border-2 border-purple-400/40 shadow-xl">
+              <div className="text-center">
+                <div className="flex items-center justify-center gap-2 mb-3">
+                  <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center border border-red-400">
+                    <span className="text-white text-xs font-bold">AD</span>
+                  </div>
                 </div>
-                <p className="text-blue-100 font-medium text-sm">
-                  카카오뱅크 3333-25-5152733
+                <h3 className="text-lg font-bold text-yellow-200 mb-3">
+                  🔮 광고 게재 문의
+                </h3>
+                <p className="text-purple-100 text-sm mb-4 leading-relaxed">
+                  투자자들에게 브랜드를<br/>
+                  효과적으로 알릴 기회입니다
                 </p>
+                <div className="bg-gradient-to-r from-yellow-600/20 to-orange-600/20 rounded-lg p-3 border border-yellow-500/40">
+                  <div className="flex items-center justify-center gap-2 mb-2">
+                    <span className="text-yellow-200 text-sm font-medium">📧 광고 문의</span>
+                  </div>
+                  <div className="space-y-2">
+                    <p className="text-yellow-100 font-medium text-sm">
+                      sitemaker_@naver.com
+                    </p>
+                    <div className="bg-red-600/30 rounded-lg px-2 py-1 border border-red-500/40 inline-block">
+                      <p className="text-red-300 font-bold text-sm">
+                        월 3만원
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {/* Footer */}
-        <div className="text-center mt-6 text-yellow-300 text-xs">
-          <p>👑 점지는 참고용일 뿐입니다 👑</p>
-          <p>투자는 신중히 결정하세요! ⚔️💎</p>
+          {/* Prediction Result */}
+          {prediction && (
+            <div className="bg-gradient-to-br from-amber-900/20 via-yellow-900/20 to-orange-900/20 backdrop-blur-lg rounded-xl p-4 border-2 border-yellow-500/30 shadow-xl mb-4">
+              <div className="text-center">
+                <div className="text-3xl mb-3">{prediction.icon}</div>
+                <h2 className="text-sm font-bold text-yellow-200 mb-4 leading-relaxed">
+                  <span className="text-yellow-300">{prediction.stockName}</span> 점괘 결과 🔮
+                </h2>
+
+                {/* 점괘 메시지 */}
+                <div className="bg-gradient-to-br from-amber-800/20 to-yellow-800/20 rounded-lg p-3 mb-3 border border-yellow-600/30">
+                  <div className="text-yellow-100 text-xs sm:text-sm leading-relaxed whitespace-pre-line text-left">
+                    {prediction.message}
+                  </div>
+                </div>
+
+                {/* 조언 */}
+                {prediction.advice && (
+                  <div className="bg-gradient-to-r from-red-800/30 to-pink-800/30 rounded-lg p-3 mb-3 border border-red-500/30">
+                    <div className="text-red-200 text-xs sm:text-sm" dangerouslySetInnerHTML={{ __html: prediction.advice }}></div>
+                  </div>
+                )}
+
+                <div className="flex justify-center items-center gap-2 flex-wrap">
+                  {prediction.direction === 'up' && (
+                    <div className="flex items-center gap-1 bg-green-500/20 px-2 py-1 rounded-full border border-green-500/40">
+                      <TrendingUp className="text-green-400" size={14} />
+                      <span className="text-green-400 font-bold text-xs">상승 예상</span>
+                    </div>
+                  )}
+                  {prediction.direction === 'down' && (
+                    <div className="flex items-center gap-1 bg-red-500/20 px-2 py-1 rounded-full border border-red-500/40">
+                      <TrendingDown className="text-red-400" size={14} />
+                      <span className="text-red-400 font-bold text-xs">하락 예상</span>
+                    </div>
+                  )}
+                  <div className="bg-yellow-600/20 px-2 py-1 rounded-full border border-yellow-500/40">
+                    <span className="text-yellow-200 text-xs">신뢰도: {prediction.confidence}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Donation Section - 점괘 결과가 나온 후에만 표시 */}
+          {prediction && (
+            <div className="bg-gradient-to-br from-pink-800/20 via-purple-800/20 to-blue-800/20 backdrop-blur-lg rounded-xl p-4 mb-4 border-2 border-pink-400/40 shadow-xl">
+              <div className="text-center">
+                <div className="text-2xl mb-2">❤️</div>
+                <h3 className="text-lg font-bold text-pink-200 mb-2">
+                  후원해주세요!
+                </h3>
+                <p className="text-purple-100 text-xs mb-3 leading-relaxed">
+                  나도 주식 한 번 사보고 싶다...
+                </p>
+                <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-lg p-3 border border-blue-500/40">
+                  <div className="flex items-center justify-center gap-1 mb-2">
+                    <span className="text-blue-200 text-xs font-medium">📱 후원 계좌</span>
+                  </div>
+                  <p className="text-blue-100 font-medium text-sm">
+                    카카오뱅크 3333-25-5152733
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Footer */}
+          <div className="text-center mt-6 text-yellow-300 text-xs">
+            <p>👑 점지는 참고용일 뿐입니다 👑</p>
+            <p>투자는 신중히 결정하세요! ⚔️💎</p>
+          </div>
         </div>
       </div>
     </div>
